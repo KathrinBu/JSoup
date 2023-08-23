@@ -3,10 +3,7 @@ package com.example.jsoup;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -25,9 +22,8 @@ public class HelloController {
 
     Model model= new Model();
     public void initialize() throws IOException {
-        model.poluchenieDannyh("https://www.avito.ru/");
-        label.setText(model.generalTitle); //СЮДА ДОБАВИТЬ elFirst??????
-
+        model.poluchenieDannyh("https://www.avito.ru/sankt-peterburg/koshki?cd=1");
+        label.setText(model.generalTitle);
         button.setOnAction(a->initTable());
     }
 
