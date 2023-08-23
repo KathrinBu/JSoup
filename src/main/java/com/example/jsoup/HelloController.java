@@ -23,29 +23,19 @@ public class HelloController {
     @FXML
     Button button;
 
-    static ObservableList<Header> observableList= FXCollections.observableArrayList();
+    Model model= new Model();
     public void initialize() throws IOException {
-        label.setText("title"); //СЮДА ДОБАВИТЬ elFirst??????
-        poluchenieDannyh("https://www.avito.ru/");
+        model.poluchenieDannyh("https://www.avito.ru/");
+        label.setText(model.generalTitle); //СЮДА ДОБАВИТЬ elFirst??????
+
         button.setOnAction(a->initTable());
-
     }
 
-    public static void poluchenieDannyh(String url) throws IOException {
-        Document doc = Jsoup.connect(url).get();
-        Element elFirst = doc.selectFirst("title"); //заголовок общий
-        Elements el = doc.select("h3"); //список заголовков
-        String elGip = doc.select("a").attr("href"); //список гиперссылок в формате ссылок
-        for (Element elS:el) {
-            String title=elS.text();
-            observableList.add(new Header(title));
-        }
-    }
     private void initTable() {
         tableView.getColumns().clear();
         TableColumn<Header, String> aColumn=new TableColumn<>("titleS");
         aColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         tableView.getColumns().add(aColumn);
-        tableView.setItems(observableList);
+        tableView.setItems(model.observableList);
     }
 }
