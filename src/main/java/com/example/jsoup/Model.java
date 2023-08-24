@@ -24,9 +24,9 @@ public class Model {
 //        fileWriter.close();
         Element elFirst = doc.selectFirst("title"); //заголовок общий
         generalTitle = elFirst.text();
-        Elements items=doc.getElementsByClass("item");
+        Elements items=doc.getElementsByClass("geo-root-zPwRk");
         for (Element item:items) {
-           Element e1=item.getElementsByClass("item").select("a").first();
+           Element e1=item.getElementsByClass("styles-module-root").select("p").first();
            String str=e1.text();
            if(str.toLowerCase().contains("котенок")){
                observableList.add(new Header(str));
